@@ -63,10 +63,10 @@ public class Main {
     private static int makeRace(Car userCar, Car opponentCar, int distance) {
         printFlag();
         // Напишите логические выражения для определения победителя
-        boolean shortRaceWin = (distance <= 15); // на короткой дистанции
-        boolean longRaceWin = (50 < distance); // на длинной дистанции
+        boolean shortRaceWin = (distance <= 15) && (userCar.acceleration > opponentCar.acceleration); // на короткой дистанции
+        boolean longRaceWin = (50 < distance) && (userCar.maxSpeed > opponentCar.maxSpeed); // на длинной дистанции
 
-        if (((shortRaceWin && (userCar.acceleration > opponentCar.acceleration)) || (longRaceWin && (userCar.maxSpeed > opponentCar.maxSpeed)))) { // если победил на короткой или на длинной дистанции
+        if (shortRaceWin || longRaceWin) { // если победил на короткой или на длинной дистанции
             System.out.println("Вы выиграли!");
             // Найдите и верните наибольшее из максимальных скоростей
             if (userCar.maxSpeed > opponentCar.maxSpeed) {
@@ -140,6 +140,6 @@ public class Main {
         // Пропишите логику по конвертации параметра nitroLevel
         if (nitroLevel == 0) {
             return null;
-        }else return (nitroLevel);
+        }else return nitroLevel;
     }
 }
